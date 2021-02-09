@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/3d8af50c2d.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="css/bs/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bs/bootstrap-grid.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <title>PhoneBook</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box" id="heading">
+            <h1>Contacts</h1>
+        </div>
+
+        <div class="d-flex box">
+            <div class="mainView">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Phone Number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(let i = 0; i < contactItems.length; i++) { %>
+                        <tr>
+                            <th scope="row"><%= i+1 %></th>
+                            <td><%= contactItems[i].first_name %></td>
+                            <td><%= contactItems[i].last_name %></td>
+                            <td><%= contactItems[i].phone_number %></td>
+                            <td>
+                                <form id="formDelete" action="/delete-contact" method="POST">
+                                    <div class="delete-btn">
+                                        <input type="hidden" value="<%= contactItems[i].id %>" name="contactDelete">
+                                     
+                                        <button type="submit" class="fas fa-times"></button>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+
+                <div class="table">
+                   
+                </div>
+
+                <div class="d-flex justify-content-center ">
+                    <form action="/add-contact" method="POST">
+                        <input id="first_name_field" type="text" name="newFirst" placeholder="Add first name" value=""
+                            required="true">
+                        <br>
+                        <input id="last_name_field" type="text" name="newLast" placeholder="Add last name" value=""
+                            required="true">
+                        <br>
+                            <input id="phone_number_field" type="text" name="newPhone" placeholder="Add a phone number"value="" 
+                            required="true">
+                        <br>
+
+                        
+                        <div class="d-flex justify-content-center ">
+                            <button id="add-btn" type="submit" class="btn btn-primary submit-button">Add
+                                Contact</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <footer>
+            <span class="footer">Rauno Järvela. &#169 2021</span>
+        </footer>
+    </div>
+</body>
+
+</html>
